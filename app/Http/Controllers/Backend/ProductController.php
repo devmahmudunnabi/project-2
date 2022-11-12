@@ -97,8 +97,22 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteid($id)
     {
-        //
+        $delete = ProductModel::find($id);
+        $delete->delete();
+        return redirect()->route("showproduct");
+    }
+    public function status($id)
+    {
+        $status = ProductModel::find($id);
+        if($status->status== 1){
+            $status->status = 2;
+        }
+        else{
+            $status->status = 1;
+        }
+        $status->update();
+        return redirect()->route("showproduct");
     }
 }

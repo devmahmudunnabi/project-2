@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\EmployeeController;
+
 
 
 /*
@@ -24,4 +26,16 @@ Route::POST('/productstore',[ProductController::class,'productstore'])->name("pr
 Route::get('/showproduct',[ProductController::class,'showproduct'])->name("showproduct"); 
 Route::get('/editproduct/{id}',[ProductController::class,'editproduct'])->name("editproduct");
 Route::POST('/updatedata/{id}',[ProductController::class,'updatedata'])->name("updatedata"); 
+Route::get('/delete/{id}',[ProductController::class,'deleteid'])->name("delete"); 
+Route::get('/status/{id}',[ProductController::class,'status'])->name("status"); 
+
+
+// //  add employee
+
+    Route::controller(EmployeeController::class)->prefix('shykat')->group(function(){
+       Route::get('/addemployee','addemployee')->name('addemployee'); 
+       Route::POST('/employeestore','store'); 
+       Route::get('/showemployee','show'); 
+    });
+
 
